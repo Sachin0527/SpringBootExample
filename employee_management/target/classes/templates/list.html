@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+</head>
+<body class="bg-gray-800 text-white">
+    <nav class="bg-gray-900 p-4">
+        <a href="/employees/create" class="text-white">Create Employee</a>
+    </nav>
+    <div class="container mx-auto mt-5">
+        <h1 class="text-2xl">Employee List</h1>
+        <table class="min-w-full mt-5">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2">ID</th>
+                    <th class="border px-4 py-2">Name</th>
+                    <th class="border px-4 py-2">Location</th>
+                    <th class="border px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td class="border px-4 py-2" th:text="${employee.id}"></td>
+                    <td class="border px-4 py-2" th:text="${employee.name}"></td>
+                    <td class="border px-4 py-2" th:text="${employee.location}"></td>
+                    <td class="border px-4 py-2">
+                        <a th:href="@{/employees/update/{id}(id=${employee.id})}" class="text-blue-500">Edit</a>
+                        <a th:href="@{/employees/delete/{id}(id=${employee.id})}" class="text-red-500">Delete</a>
+                        <a th:href="@{/employees/view/{id}(id=${employee.id})}" class="text-green-500">View</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
